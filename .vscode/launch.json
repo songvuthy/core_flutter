@@ -1,0 +1,71 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "Dev (Debug)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_dev.dart",
+        "args": [
+          "--flavor",
+          "dev"
+        ]
+      },
+      {
+        "name": "Dev (Release)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_dev.dart",
+        "args": [
+          "--flavor",
+          "dev",
+          "--release"
+        ]
+      },
+      {
+        "name": "UAT (Debug)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_uat.dart",
+        "args": [
+          "--flavor",
+          "uat"
+        ]
+      },
+      {
+        "name": "UAT (Release)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_uat.dart",
+        "args": [
+          "--flavor",
+          "uat",
+          "--release"
+        ]
+      },
+      {
+        "name": "Prod (Debug)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_prod.dart",
+        "args": [
+          "--flavor",
+          "prod"
+        ]
+      },
+      {
+        "name": "Prod (Release)",
+        "request": "launch",
+        "type": "dart",
+        "program": "lib/main_prod.dart",
+        "args": [
+          "--flavor",
+          "prod",
+          "--release"
+        ]
+      }
+    ]
+}
