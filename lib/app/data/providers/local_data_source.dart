@@ -19,13 +19,11 @@ class LocalDataSource {
   }
 
   Future<void> setAccessToken(String value) async {
-    await _secureStorage.write(
-        key: AppStorage.accessToken, value: value);
+    await _secureStorage.write(key: AppStorage.accessToken, value: value);
   }
 
   Future<void> setRefreshToken(String value) async {
-    await _secureStorage.write(
-        key: AppStorage.refreshToken, value: value);
+    await _secureStorage.write(key: AppStorage.refreshToken, value: value);
   }
 
   Future<void> setIsLogged(bool value) async {

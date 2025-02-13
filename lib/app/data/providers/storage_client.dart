@@ -1,7 +1,8 @@
+import 'package:core_flutter/app/constants/app_storage.dart';
 import 'package:get_storage/get_storage.dart';
 
 class StorageClient {
-  final GetStorage _box = GetStorage("StorageClient");
+  final GetStorage _box = GetStorage(AppStorage.init);
 
   // Save an item to the storage
   Future<void> save(String key, dynamic value) async {

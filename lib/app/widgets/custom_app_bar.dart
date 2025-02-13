@@ -28,8 +28,8 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
     this.titleSpacing,
     this.actions,
     this.height = kToolbarHeight,
-    this.backgroundColor = AppColors.background,
-    this.foregroundColor = AppColors.primaryNormal,
+    this.backgroundColor = AppColors.white,
+    this.foregroundColor = AppColors.black,
     this.systemOverlayStyle = const SystemUiOverlayStyle(
       statusBarBrightness: Brightness.light, // For iOS: (light icons)
       statusBarIconBrightness: Brightness.dark, // For Android: (dark icons)

@@ -1,4 +1,6 @@
 import 'package:core_flutter/app/routes/app_pages.dart';
+import 'package:core_flutter/app/theme/app_colors.dart';
+import 'package:core_flutter/app/translations/translation_service.dart';
 import 'package:core_flutter/env/app_config.dart';
 import 'package:core_flutter/env/device_info.dart';
 import 'package:core_flutter/env/main_binding.dart';
@@ -11,11 +13,16 @@ String? accessToken;
 
 class Apps extends StatelessWidget {
   const Apps({super.key});
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
+        useMaterial3: true,
+        primaryColor: AppColors.primaryNormal,
+        scaffoldBackgroundColor: AppColors.background,
+        dialogBackgroundColor: AppColors.background,
+        focusColor: AppColors.primaryNormal,
+        indicatorColor: AppColors.primaryNormal,
         fontFamily: 'Poppins',
         fontFamilyFallback: const ['Poppins', 'KantumruyPro'],
         textTheme: Theme.of(context).textTheme.copyWith(
@@ -76,6 +83,9 @@ class Apps extends StatelessWidget {
       initialBinding: MainBinding(),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+      translations: TranslationService(),
+      locale: TranslationService.getCurrentLocale(),
+      fallbackLocale: TranslationService.fallbackLocale,
     );
   }
 }
