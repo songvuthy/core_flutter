@@ -1,8 +1,10 @@
-const Map<String, String> enUs = {
+import 'package:core_flutter/app/translations/app_language_key_extension.dart';
+
+Map<String, String> enUs = {
   // Home
-  "home_title": "Home",
+  LanguageKey.homeTitle.key: "Home",
   //
-  "hello": "Hello",
-  "welcome": "Welcome",
-  "language": "Language"
+  LanguageKey.hello.key: "Hello",
+  LanguageKey.welcome.key: "Welcome",
+  LanguageKey.language.key: "Language"
 };

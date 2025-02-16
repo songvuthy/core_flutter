@@ -28,7 +28,7 @@ class TokenUtils {
                 await _local.clearSecureStorage();
                 Get.offAllNamed(Routes.SPLASH);
               },
-              child: Text("ok".tr),
+              child: Text("Okay"),
             )
           ],
         ),

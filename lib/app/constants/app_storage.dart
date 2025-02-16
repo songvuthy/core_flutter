@@ -3,5 +3,5 @@ class AppStorage {
   static String accessToken = "accessToken";
   static String refreshToken = "refreshToken";
   static String logged = "logged";
-  static String currentLocale = "currentLocale";
+  static String selectedLocale = "selectedLocale";
 }

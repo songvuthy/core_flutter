@@ -1,6 +1,6 @@
+import 'package:core_flutter/app/modules/home/views/widgets/home_widget.dart';
 import 'package:core_flutter/app/routes/app_pages.dart';
-import 'package:core_flutter/app/theme/app_text_style.dart';
-import 'package:core_flutter/app/translations/translation_service.dart';
+import 'package:core_flutter/app/translations/app_language_key_extension.dart';
 import 'package:core_flutter/app/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 
@@ -18,35 +18,9 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(isShowBack: false, title: Text("home_title".tr)),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'hello'.tr,
-              style: AppTextStyle.h1Headline,
-            ),
-            Text(
-              'welcome'.tr,
-              style: AppTextStyle.body1,
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: () {
-                TranslationService.changeLocale('English');
-              },
-              child: Text('English'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                TranslationService.changeLocale('Khmer');
-              },
-              child: Text('ភាសាខ្មែរ'),
-            ),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(
+          isShowBack: false, title: Text(LanguageKey.homeTitle.tr)),
+      body: HomeWidget(controller: controller),
     );
   }
 }

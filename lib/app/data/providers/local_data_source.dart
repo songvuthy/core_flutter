@@ -11,11 +11,11 @@ class LocalDataSource {
   );
 
   Future<String?> getAccessToken() async {
-    return _secureStorage.read(key: AppStorage.accessToken);
+    return await _secureStorage.read(key: AppStorage.accessToken);
   }
 
   Future<String?> getRefreshToken() async {
-    return _secureStorage.read(key: AppStorage.refreshToken);
+    return await _secureStorage.read(key: AppStorage.refreshToken);
   }
 
   Future<void> setAccessToken(String value) async {
@@ -26,19 +26,20 @@ class LocalDataSource {
     await _secureStorage.write(key: AppStorage.refreshToken, value: value);
   }
 
-  Future<void> setIsLogged(bool value) async {
-    await _storage.save(AppStorage.logged, value);
-  }
-
-  bool getIsLogged() {
-    return (_storage.read(AppStorage.logged) as bool?) ?? false;
-  }
-
   Future<void> clearSecureStorage() async {
     await _secureStorage.deleteAll(
       aOptions: const AndroidOptions(
         encryptedSharedPreferences: true,
       ),
     );
+  }
+
+  Future<void> clearStorageExcept(List<String> keysToKeep) async {
+    final allKeys = _storage.getAllKeys();
+    for (var key in allKeys) {
+      if (!keysToKeep.contains(key)) {
+        await _storage.delete(key);
+      }
+    }
   }
 }

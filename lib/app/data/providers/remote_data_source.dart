@@ -7,15 +7,19 @@ class RemoteDataSource {
 
   http.Request login({required Map<String, dynamic> body}) {
     return _apiRequest.methodPost(
-      "auth/login".mergeBaseUrlApiEndPoint(),
+      "auth-password/login".mergeBaseUrlApiEndPoint(),
       body,
     );
   }
 
   http.Request logout() {
     return _apiRequest.methodPost(
-      "auth/logout".mergeBaseUrlApiEndPoint(),
+      "auth-logout/logout".mergeBaseUrlApiEndPoint(),
       null,
     );
+  }
+
+  http.Request getSetting() {
+    return _apiRequest.methodGet("setting".mergeBaseUrlApiEndPoint());
   }
 }

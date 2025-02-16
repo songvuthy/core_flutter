@@ -55,6 +55,7 @@ class ApiRequest {
   }) {
     final uri = _buildUri(url, query);
     final request = http.Request(method, uri)..headers.addAll(_getHeaders());
+    _logRequest(request);
     // Set the body if it's provided
     if (body != null) {
       if (body is String) {
@@ -105,5 +106,16 @@ class ApiRequest {
       ..headers.addAll(_getHeaders());
     request.files.add(multipartFile);
     return request;
+  }
+
+  void _logRequest(http.Request request) {
+    print('--- Request ---');
+    print('Method: ${request.method}');
+    print('URL: ${request.url}');
+    print('Headers: ${request.headers}');
+    if (request.body.isNotEmpty) {
+      print('Body: ${request.body}');
+    }
+    print('---------------');
   }
 }

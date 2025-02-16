@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function()? onPressed;
   final bool isShowBack;
   final bool centerTitle;
-  final bool autoElevation;
   final Widget title;
   final double? titleSpacing;
   final List<Widget>? actions;
@@ -17,13 +16,13 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   final Color? backgroundColor;
   final Color? foregroundColor;
   final SystemUiOverlayStyle? systemOverlayStyle;
+  final double? elevation;
 
   const CustomAppBar({
     super.key,
     this.onPressed,
     this.isShowBack = true,
     this.centerTitle = true,
-    this.autoElevation = true,
     required this.title,
     this.titleSpacing,
     this.actions,
@@ -37,33 +36,14 @@ class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
       systemNavigationBarIconBrightness: Brightness.dark,
       systemNavigationBarColor: AppColors.background,
     ),
+    this.elevation = 0.5,
   });
 
   @override
   Size get preferredSize => Size.fromHeight(height);
 
-  @override
-  State<StatefulWidget> createState() => _CustomAppBarState();
-}
-
-class _CustomAppBarState extends State<CustomAppBar> {
-  var isBelowAppBar = false;
-
-  bool scrollStatus(bool isBelowAppBar) {
-    if (!widget.autoElevation) {
-      return false;
-    }
-    if (this.isBelowAppBar != isBelowAppBar) {
-      setState(() {
-        this.isBelowAppBar = isBelowAppBar;
-      });
-      return true;
-    }
-    return false;
-  }
-
   List<Widget>? _getAndAddSpacingToActions() {
-    return widget.actions
+    return actions
         ?.map(
           (e) => Padding(
             padding: const EdgeInsets.only(
@@ -78,15 +58,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
   Widget build(BuildContext context) {
     return AppBar(
       automaticallyImplyLeading: false,
-      titleSpacing: widget.titleSpacing,
-      leading: widget.isShowBack
+      titleSpacing: titleSpacing,
+      leading: isShowBack
           ? Container(
               padding: const EdgeInsets.only(
                   left: AppDecoration.appBarIconSpaceBetween),
               child: AppIconButtonAppBar(
                 onPressed: () {
-                  if (widget.onPressed != null) {
-                    widget.onPressed!.call();
+                  if (onPressed != null) {
+                    onPressed!.call();
                     return;
                   }
                   Get.back();
@@ -100,15 +80,15 @@ class _CustomAppBarState extends State<CustomAppBar> {
             )
           : null,
       leadingWidth: 48,
-      shadowColor: isBelowAppBar ? AppColors.shadow : null,
-      systemOverlayStyle: widget.systemOverlayStyle,
-      title: widget.title,
+      elevation: elevation,
+      shadowColor: elevation != null ? AppColors.shadow : null,
+      surfaceTintColor: backgroundColor,
+      systemOverlayStyle: systemOverlayStyle,
+      title: title,
       actions: _getAndAddSpacingToActions(),
-      notificationPredicate: (notification) =>
-          scrollStatus(notification.metrics.pixels > 0),
-      centerTitle: widget.centerTitle,
-      backgroundColor: isBelowAppBar ? Colors.white : widget.backgroundColor,
-      foregroundColor: widget.foregroundColor,
+      centerTitle: centerTitle,
+      backgroundColor: backgroundColor,
+      foregroundColor: foregroundColor,
     );
   }
 }

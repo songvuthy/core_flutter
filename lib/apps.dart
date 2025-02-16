@@ -84,7 +84,7 @@ class Apps extends StatelessWidget {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       translations: TranslationService(),
-      locale: TranslationService.getCurrentLocale(),
+      locale: TranslationService.locale,
       fallbackLocale: TranslationService.fallbackLocale,
     );
   }

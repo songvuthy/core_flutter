@@ -6,9 +6,9 @@ import 'dart:io';
 
 import 'package:core_flutter/app/data/models/message_response.dart';
 import 'package:core_flutter/app/data/models/token_response.dart';
+import 'package:core_flutter/app/data/providers/local_data_source.dart';
 import 'package:core_flutter/app/extension/string_extension.dart';
 import 'package:core_flutter/app/repository/account_repository.dart';
-import 'package:core_flutter/app/repository/credential_repository.dart';
 import 'package:core_flutter/app/utils/token_utils.dart';
 import 'package:core_flutter/app/widgets/app_custom_toast.dart';
 import 'package:core_flutter/app/widgets/app_dialog.dart';
@@ -55,6 +55,7 @@ extension RequestExtension on http.BaseRequest {
           await client.send(this).timeout(const Duration(minutes: 1));
       final response = await http.Response.fromStream(streamResponse);
       final status = _HttpStatusCode(response.statusCode);
+      _logResponse(response);
       if (status.isOk) {
         final data = jsonDecode(response.body);
         return Success<T>(fromJson(data));
@@ -123,6 +124,7 @@ extension RequestExtension on http.BaseRequest {
       final response = await http.Response.fromStream(streamResponse)
           .timeout(const Duration(minutes: 1));
       final status = _HttpStatusCode(response.statusCode);
+      _logResponse(response);
       if (status.isOk) {
         final data = jsonDecode(response.body);
         return Success<Map<String, dynamic>>(data);
@@ -171,6 +173,16 @@ extension RequestExtension on http.BaseRequest {
     }
   }
 
+  void _logResponse(http.Response response) {
+    final Map<String, dynamic> jsonResponse =
+        Map<String, dynamic>.from(jsonDecode(response.body));
+    print('--- Response ---');
+    // Log keys and values recursively
+    // _logJson(jsonResponse);
+    _logJsonString(jsonResponse);
+    print('---------------');
+  }
+
   Future<void> _requestLogout() async {
     final AccountRepository accountRepository = Get.find();
     final result = await accountRepository.logout();
@@ -180,24 +192,49 @@ extension RequestExtension on http.BaseRequest {
     });
   }
 
+  void _logJsonString(Map<String, dynamic> json) {
+    print(json);
+  }
+
+  void _logJson(Map<String, dynamic> json, {int indent = 0}) {
+    final String indentSpace = '  ' * indent;
+
+    json.forEach((key, value) {
+      if (value is Map) {
+        print('$indentSpace$key: {');
+        _logJson(Map<String, dynamic>.from(value), indent: indent + 1);
+        print('$indentSpace}');
+      } else if (value is List) {
+        print('$indentSpace$key: [');
+        for (var item in value) {
+          if (item is Map) {
+            _logJson(Map<String, dynamic>.from(item), indent: indent + 1);
+          } else {
+            print('$indentSpace  $item');
+          }
+        }
+        print('$indentSpace]');
+      } else {
+        print('$indentSpace$key: $value');
+      }
+    });
+  }
+
   Future<bool> _regenerateToken() async {
     final client = RetryClient(http_client_factory.httpClient());
 
     try {
       final response = await client.post(
-        Uri.parse("auth/refresh-token".mergeBaseUrlApiEndPoint()),
+        Uri.parse("auth-token/refresh-token".mergeBaseUrlApiEndPoint()),
         body: {'refreshToken': TokenUtils.instance.refreshToken.toString()},
       );
       var status = _HttpStatusCode(response.statusCode);
       if (status.isOk) {
         final successResponse =
             TokenResponse.fromMap(jsonDecode(response.body));
-        final CredentialRepository credentialRepository =
-            CredentialRepository();
-        await credentialRepository
-            .setAccessToken(successResponse.data.accessToken);
-        await credentialRepository
-            .setRefreshToken(successResponse.data.refreshToken);
+        final LocalDataSource source = Get.find();
+        await source.setAccessToken(successResponse.data.accessToken);
+        await source.setRefreshToken(successResponse.data.refreshToken);
         return true;
       } else if (status.isUnauthorized) {
         await TokenUtils.instance.showSessionExpired();

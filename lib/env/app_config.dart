@@ -17,21 +17,18 @@ class AppConfigOption {
     switch (flavor) {
       case Flavor.dev:
         return AppConfig(
-          baseUrlApi: "https://api-dev-e-commerce.igtech.asia/client/",
-          baseUrlMedia:
-              "https://dsi-ecommerce-dev.obs.ap-southeast-3.myhuaweicloud.com/",
+          baseUrlApi: "http://136.228.129.2:90/api/v1/client/",
+          baseUrlMedia: "http://136.228.129.2:90/",
         );
       case Flavor.uat:
         return AppConfig(
-          baseUrlApi: "https://api-dev-e-commerce.igtech.asia/client/",
-          baseUrlMedia:
-              "https://dsi-ecommerce-dev.obs.ap-southeast-3.myhuaweicloud.com/",
+          baseUrlApi: "http://136.228.129.2:90/api/v1/client/",
+          baseUrlMedia: "http://136.228.129.2:90/",
         );
       case Flavor.prod:
         return AppConfig(
-          baseUrlApi: "https://api-dev-e-commerce.igtech.asia/client/",
-          baseUrlMedia:
-              "https://dsi-ecommerce-dev.obs.ap-southeast-3.myhuaweicloud.com/",
+          baseUrlApi: "http://136.228.129.2:90/api/v1/client/",
+          baseUrlMedia: "http://136.228.129.2:90/",
         );
     }
   }

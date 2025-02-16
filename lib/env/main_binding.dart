@@ -1,5 +1,6 @@
 import 'package:core_flutter/app/data/providers/local_data_source.dart';
 import 'package:core_flutter/app/data/providers/remote_data_source.dart';
+import 'package:core_flutter/app/repository/account_repository.dart';
 import 'package:get/get.dart';
 
 class MainBinding extends Bindings {
@@ -8,5 +9,6 @@ class MainBinding extends Bindings {
   void dependencies() {
     Get.put(LocalDataSource(), permanent: true);
     Get.put(RemoteDataSource(), permanent: true);
+    Get.put(AccountRepository(), permanent: true);
   }
 }

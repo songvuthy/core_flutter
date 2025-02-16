@@ -15,5 +15,5 @@ class AppDecoration {
   static const double appBarIconSize = 24;
   static const double appBarIconSpaceBetween = 8;
 
-  static bool isTablet = Get.size.shortestSide >= 600;
+  static bool isTablet = Get.context!.isTablet;
 }
