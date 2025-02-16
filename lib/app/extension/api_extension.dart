@@ -174,8 +174,7 @@ extension RequestExtension on http.BaseRequest {
   }
 
   void _logResponse(http.Response response) {
-    final Map<String, dynamic> jsonResponse =
-        Map<String, dynamic>.from(jsonDecode(response.body));
+    final Map<String, dynamic> jsonResponse = jsonDecode(response.body);
     print('--- Response ---');
     // Log keys and values recursively
     // _logJson(jsonResponse);
