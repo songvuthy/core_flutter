@@ -12,7 +12,7 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
-  final CommonRepository _commonRepository = CommonRepository();
+  final CommonRepository _commonRepository = Get.find();
 
   @override
   void onInit() {
