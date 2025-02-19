@@ -1,7 +1,7 @@
 import 'package:core_flutter/app/constants/app_decoration.dart';
 import 'package:core_flutter/app/extension/api_extension.dart';
 import 'package:core_flutter/app/modules/home/views/home_view.dart';
-import 'package:core_flutter/app/repository/common_repository.dart';
+import 'package:core_flutter/app/data/repository/common_repository.dart';
 import 'package:core_flutter/env/device_info.dart';
 import 'package:core_flutter/app/utils/token_utils.dart';
 import 'package:core_flutter/apps.dart';
@@ -30,29 +30,28 @@ class SplashController extends GetxController {
   }
 
   Future<void> _initComponent() async {
-    // Device Orientation
+    // Set Device Orientation
     SystemChrome.setPreferredOrientations(_getDeviceOrientations());
-    // App Config
+    // Initialize App Config
     instanceAppConfig = AppConfigOption.appConfig;
-    // Firebase Initialize App
+    // Initialize Firebase
     await Firebase.initializeApp(
       options: DefaultFirebaseOptions.currentPlatform,
     );
-    // Device Info
+    // Get Device Info
     instanceDeviceInfo = await DeviceInfoData.deviceInfo();
-    // Access Token
+    // Get Access Token
     accessToken = await TokenUtils.instance.accessToken;
   }
 
   List<DeviceOrientation> _getDeviceOrientations() {
-    if (AppDecoration.isTablet) {
-      return [
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.landscapeRight,
-      ];
-    }
-    return [DeviceOrientation.portraitUp];
+    return AppDecoration.isTablet
+        ? [
+            DeviceOrientation.portraitUp,
+            DeviceOrientation.portraitDown,
+            DeviceOrientation.landscapeLeft,
+            DeviceOrientation.landscapeRight,
+          ]
+        : [DeviceOrientation.portraitUp];
   }
 }

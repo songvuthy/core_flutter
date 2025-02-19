@@ -4,11 +4,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:core_flutter/app/data/models/message_response.dart';
-import 'package:core_flutter/app/data/models/token_response.dart';
+import 'package:core_flutter/app/data/models/response/message_response.dart';
+import 'package:core_flutter/app/data/models/response/token_response.dart';
 import 'package:core_flutter/app/data/providers/local_data_source.dart';
 import 'package:core_flutter/app/extension/string_extension.dart';
-import 'package:core_flutter/app/repository/account_repository.dart';
+import 'package:core_flutter/app/data/repository/account_repository.dart';
 import 'package:core_flutter/app/utils/token_utils.dart';
 import 'package:core_flutter/app/widgets/app_custom_toast.dart';
 import 'package:core_flutter/app/widgets/app_dialog.dart';

@@ -1,5 +1,5 @@
 import 'package:core_flutter/app/constants/app_path.dart';
-import 'package:core_flutter/app/data/models/message_response.dart';
+import 'package:core_flutter/app/data/models/response/message_response.dart';
 import 'package:core_flutter/app/theme/app_colors.dart';
 import 'package:core_flutter/app/theme/app_text_style.dart';
 import 'package:core_flutter/app/widgets/app_anim_switcher.dart';
