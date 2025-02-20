@@ -1,0 +1,2 @@
+/Users/songvuthy/Documents/Company/core-project/core_flutter/android/app/.cxx/Debug/k6zqo383/x86/CMakeFiles/edit_cache.dir
+/Users/songvuthy/Documents/Company/core-project/core_flutter/android/app/.cxx/Debug/k6zqo383/x86/CMakeFiles/rebuild_cache.dir
