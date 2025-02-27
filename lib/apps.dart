@@ -20,7 +20,7 @@ class Apps extends StatelessWidget {
         useMaterial3: true,
         primaryColor: AppColors.primaryNormal,
         scaffoldBackgroundColor: AppColors.background,
-        dialogBackgroundColor: AppColors.background,
+        dialogTheme: DialogThemeData(backgroundColor: AppColors.background),
         focusColor: AppColors.primaryNormal,
         indicatorColor: AppColors.primaryNormal,
         fontFamily: 'Poppins',
