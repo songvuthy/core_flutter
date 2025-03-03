@@ -7,26 +7,36 @@ class AppTextStyle {
     color: AppColors.titleActive,
     fontSize: 42,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins',
+    fontFamilyFallback: ['Poppins', 'KantumruyPro'],
   );
   static const h2Headline = TextStyle(
     color: AppColors.titleActive,
     fontSize: 40,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins',
+    fontFamilyFallback: ['Poppins', 'KantumruyPro'],
   );
   static const h3Headline = TextStyle(
     color: AppColors.titleActive,
     fontSize: 32,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins',
+    fontFamilyFallback: ['Poppins', 'KantumruyPro'],
   );
   static const h4Headline = TextStyle(
     color: AppColors.titleActive,
     fontSize: 24,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins',
+    fontFamilyFallback: ['Poppins', 'KantumruyPro'],
   );
   static const h5Headline = TextStyle(
     color: AppColors.titleActive,
     fontSize: 18,
     fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins',
+    fontFamilyFallback: ['Poppins', 'KantumruyPro'],
   );
 
   //Subtitle

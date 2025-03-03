@@ -1,6 +1,7 @@
 import 'package:core_flutter/app/constants/app_decoration.dart';
 import 'package:core_flutter/app/modules/home/controllers/home_controller.dart';
 import 'package:core_flutter/app/theme/app_colors.dart';
+import 'package:core_flutter/app/translations/app_language_key_extension.dart';
 import 'package:core_flutter/app/widgets/anim_inkwell.dart';
 import 'package:core_flutter/app/widgets/app_box_shadow.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class HomeFilterWidget extends StatelessWidget {
                       child: TextField(
                         controller: controller.searchController,
                         decoration: InputDecoration(
-                          hintText: 'Search',
+                          hintText: LanguageKey.homeSearch.tr,
                           border: InputBorder.none,
                         ),
                       ),
@@ -51,8 +52,8 @@ class HomeFilterWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Obx(() => controller.isGrid.value
-                    ? Icon(Icons.grid_view, color: AppColors.white)
-                    : Icon(Icons.list, color: AppColors.white)),
+                    ? Icon(Icons.list, color: AppColors.white)
+                    : Icon(Icons.grid_view, color: AppColors.white)),
               ),
             ),
           ],

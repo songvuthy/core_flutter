@@ -23,61 +23,6 @@ class Apps extends StatelessWidget {
         dialogTheme: DialogThemeData(backgroundColor: AppColors.background),
         focusColor: AppColors.primaryNormal,
         indicatorColor: AppColors.primaryNormal,
-        fontFamily: 'Poppins',
-        fontFamilyFallback: const ['Poppins', 'KantumruyPro'],
-        textTheme: Theme.of(context).textTheme.copyWith(
-              // Ensure all text styles have font family fallbacks
-              labelSmall: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              labelMedium: Theme.of(context).textTheme.labelMedium?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              labelLarge: Theme.of(context).textTheme.labelLarge?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              bodySmall: Theme.of(context).textTheme.bodySmall?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              bodyMedium: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              bodyLarge: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              titleSmall: Theme.of(context).textTheme.titleSmall?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              titleMedium: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              titleLarge: Theme.of(context).textTheme.titleLarge?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              headlineSmall:
-                  Theme.of(context).textTheme.headlineSmall?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              headlineMedium:
-                  Theme.of(context).textTheme.headlineMedium?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              headlineLarge:
-                  Theme.of(context).textTheme.headlineLarge?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              displaySmall: Theme.of(context).textTheme.displaySmall?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              displayMedium:
-                  Theme.of(context).textTheme.displayMedium?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              displayLarge: Theme.of(context).textTheme.displayLarge?.copyWith(
-                fontFamilyFallback: ['Poppins', 'KantumruyPro'],
-              ),
-              // Add other text styles as needed
-            ),
       ),
       themeMode: ThemeMode.light,
       initialBinding: MainBinding(),

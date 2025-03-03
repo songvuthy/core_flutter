@@ -1,7 +1,8 @@
 import 'package:core_flutter/app/constants/app_storage.dart';
 import 'package:core_flutter/app/translations/app_language_extension.dart';
-import 'package:core_flutter/app/translations/en_us_translation.dart';
-import 'package:core_flutter/app/translations/km_kh_translation.dart';
+import 'package:core_flutter/app/translations/lang/en_us_translation.dart';
+import 'package:core_flutter/app/translations/lang/km_kh_translation.dart';
+import 'package:core_flutter/app/translations/lang/zh_cn_translation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
@@ -21,6 +22,7 @@ class TranslationService extends Translations {
   Map<String, Map<String, String>> get keys => {
         'en_US': enUs,
         'km_KH': kmKh,
+        'zh_CN': zhCn, // Added Chinese translations
       };
 
   // Get current locale from storage or fallback to English

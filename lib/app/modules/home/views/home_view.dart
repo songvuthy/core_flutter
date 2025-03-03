@@ -1,5 +1,6 @@
 import 'package:core_flutter/app/modules/home/views/widgets/home_widget.dart';
 import 'package:core_flutter/app/routes/app_pages.dart';
+import 'package:core_flutter/app/translations/app_language_extension.dart';
 import 'package:core_flutter/app/translations/app_language_key_extension.dart';
 import 'package:core_flutter/app/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,29 @@ class HomeView extends GetView<HomeController> {
           ),
         ),
         title: Text(LanguageKey.homeTitle.tr),
+        actions: [
+          PopupMenuButton<String>(
+            onSelected: (String value) {
+              controller.changeLanguage(value);
+            },
+            itemBuilder: (BuildContext context) {
+              return [
+                PopupMenuItem(
+                  value: AppLanguage.english.languageCode,
+                  child: Text(AppLanguage.english.name),
+                ),
+                PopupMenuItem(
+                  value: AppLanguage.khmer.languageCode,
+                  child: Text(AppLanguage.khmer.name),
+                ),
+                PopupMenuItem(
+                  value: AppLanguage.chinese.languageCode,
+                  child: Text(AppLanguage.chinese.name),
+                ),
+              ];
+            },
+          ),
+        ],
       ),
       body: HomeWidget(controller: controller),
       drawer: Drawer(
