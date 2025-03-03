@@ -19,7 +19,17 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-          isShowBack: false, title: Text(LanguageKey.homeTitle.tr)),
+        isShowBack: false,
+        title: Text(LanguageKey.homeTitle.tr),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.language),
+            onPressed: () {
+              controller.changeLanguage();
+            },
+          ),
+        ],
+      ),
       body: HomeWidget(controller: controller),
     );
   }

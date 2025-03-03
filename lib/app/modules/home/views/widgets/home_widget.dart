@@ -4,9 +4,9 @@ import 'package:core_flutter/app/theme/app_colors.dart';
 import 'package:flutter/widgets.dart';
 
 class HomeWidget extends StatelessWidget {
-  HomeWidget({super.key, required this.controller});
+  const HomeWidget({super.key, required this.controller});
   final HomeController controller;
-  final List<String> items = List.generate(8, (index) => 'Item ${index + 1}');
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -24,7 +24,7 @@ class HomeWidget extends StatelessWidget {
               crossAxisSpacing: AppDecoration.defaultSpacing,
               childAspectRatio: 16 / 9,
             ),
-            itemCount: items.length,
+            itemCount: controller.items.length,
             itemBuilder: (context, index) {
               return Container(
                 decoration: BoxDecoration(
@@ -33,7 +33,7 @@ class HomeWidget extends StatelessWidget {
                 ),
                 alignment: Alignment.center,
                 child: Text(
-                  items[index],
+                  controller.items[index],
                   style: TextStyle(color: AppColors.white, fontSize: 18),
                 ),
               );

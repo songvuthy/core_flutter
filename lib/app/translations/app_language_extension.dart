@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 enum AppLanguage {
   english,
   khmer,
+  chinese,
 }
 
 extension AppLanguageExtension on AppLanguage {
@@ -11,7 +12,9 @@ extension AppLanguageExtension on AppLanguage {
       case AppLanguage.english:
         return 'English';
       case AppLanguage.khmer:
-        return 'Khmer';
+        return 'ខ្មែរ';
+      case AppLanguage.chinese:
+        return 'Chinese';
     }
   }
 
@@ -21,6 +24,8 @@ extension AppLanguageExtension on AppLanguage {
         return 'en';
       case AppLanguage.khmer:
         return 'km';
+      case AppLanguage.chinese:
+        return 'zh';
     }
   }
 
@@ -30,6 +35,8 @@ extension AppLanguageExtension on AppLanguage {
         return Locale('en', 'US');
       case AppLanguage.khmer:
         return Locale('km', 'KH');
+      case AppLanguage.chinese:
+        return Locale('zh', 'CN');
     }
   }
 }
