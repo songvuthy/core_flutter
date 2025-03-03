@@ -26,6 +26,16 @@ class LocalDataSource {
     await _secureStorage.write(key: AppStorage.refreshToken, value: value);
   }
 
+  // display setttins
+  Future<void> setDisplaySettings(bool value) async {
+    await _storage.save(AppStorage.displaySettings, value.toString());
+  }
+
+  Future<bool> getDisplaySettings() async {
+    final value = await _storage.read(AppStorage.displaySettings);
+    return value == 'true';
+  }
+
   Future<void> clearSecureStorage() async {
     await _secureStorage.deleteAll(
       aOptions: const AndroidOptions(

@@ -19,8 +19,44 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(
-          isShowBack: false, title: Text(LanguageKey.homeTitle.tr)),
+        isShowBack: false,
+        leadAction: Builder(
+          // ✅ Wrap in Builder to get correct context
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () {
+              Scaffold.of(context).openDrawer();
+            },
+          ),
+        ),
+        title: Text(LanguageKey.homeTitle.tr),
+      ),
       body: HomeWidget(controller: controller),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+              child: Text('Drawer Header'),
+            ),
+            ListTile(
+              title: Text('Item 1'),
+              onTap: () {
+                Get.back();
+              },
+            ),
+            ListTile(
+              title: Text('Item 2'),
+              onTap: () {
+                Get.back();
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

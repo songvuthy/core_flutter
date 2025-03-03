@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Function()? onPressed;
+  final Widget? leadAction;
   final bool isShowBack;
   final bool centerTitle;
   final Widget title;
@@ -21,6 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.onPressed,
+    this.leadAction,
     this.isShowBack = true,
     this.centerTitle = true,
     required this.title,
@@ -78,7 +80,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
             )
-          : null,
+          : leadAction,
       leadingWidth: 48,
       elevation: elevation,
       shadowColor: elevation != null ? AppColors.shadow : null,
