@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 enum LanguageKey {
   homeTitle,
   homeItem,
-  homeSearch
+  homeSearch,
+  homeSelectLanguage,
 }
 
 extension AppLanguageKeyExtension on LanguageKey {

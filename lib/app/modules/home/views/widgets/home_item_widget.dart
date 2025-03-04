@@ -1,6 +1,7 @@
 import 'package:core_flutter/app/constants/app_decoration.dart';
 import 'package:core_flutter/app/modules/home/controllers/home_controller.dart';
 import 'package:core_flutter/app/theme/app_colors.dart';
+import 'package:core_flutter/app/theme/app_text_style.dart';
 import 'package:core_flutter/app/translations/app_language_key_extension.dart';
 import 'package:core_flutter/app/widgets/anim_inkwell.dart';
 import 'package:core_flutter/app/widgets/app_anim_switcher.dart';
@@ -25,9 +26,10 @@ class HomeItemWidget extends StatelessWidget {
         itemBuilder: (context, index) {
           return Padding(
             padding: const EdgeInsets.symmetric(
-                vertical: AppDecoration.defaultSpacing / 2),
+              vertical: AppDecoration.defaultSpacing / 2,
+            ),
             child: AspectRatio(
-              aspectRatio: 4 / 3,
+              aspectRatio: 16 / 9,
               child: AnimInkWell(
                 onTap: () {},
                 child: Container(
@@ -39,7 +41,7 @@ class HomeItemWidget extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Text(
                     "${LanguageKey.homeItem.tr} ${controller.items[index]}",
-                    style: TextStyle(color: AppColors.black, fontSize: 18),
+                    style: AppTextStyle.body1.copyWith(color: AppColors.black),
                   ),
                 ),
               ),
@@ -78,7 +80,7 @@ class HomeItemWidget extends StatelessWidget {
               alignment: Alignment.center,
               child: Text(
                 "${LanguageKey.homeItem.tr} ${controller.items[index]}",
-                style: TextStyle(color: AppColors.black, fontSize: 18),
+                style: AppTextStyle.body1.copyWith(color: AppColors.black),
               ),
             ),
           );

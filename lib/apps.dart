@@ -23,6 +23,8 @@ class Apps extends StatelessWidget {
         dialogTheme: DialogThemeData(backgroundColor: AppColors.background),
         focusColor: AppColors.primaryNormal,
         indicatorColor: AppColors.primaryNormal,
+        fontFamily: 'Poppins',
+        fontFamilyFallback: const ['Poppins', 'KantumruyPro'],
       ),
       themeMode: ThemeMode.light,
       initialBinding: MainBinding(),
@@ -31,6 +33,12 @@ class Apps extends StatelessWidget {
       translations: TranslationService(),
       locale: TranslationService.locale,
       fallbackLocale: TranslationService.fallbackLocale,
+      builder: (context, child) {
+        return MediaQuery(
+          data: MediaQuery.of(context).copyWith(textScaler: TextScaler.linear(1.0)),
+          child: child!,
+        );
+      },
     );
   }
 }

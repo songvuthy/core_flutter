@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 enum AppLanguage {
   english,
   khmer,
@@ -11,9 +12,9 @@ extension AppLanguageExtension on AppLanguage {
       case AppLanguage.english:
         return 'English';
       case AppLanguage.khmer:
-        return 'Khmer';
+        return 'ខ្មែរ';
       case AppLanguage.chinese:
-        return 'Chinese';
+        return '中文';
     }
   }
 
