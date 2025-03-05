@@ -52,6 +52,7 @@ mixin AppReusableComponent {
     Function()? positiveCallback,
     Function()? negativeCallback,
     bool isAutoBack = true,
+    bool barrierDismissible = true,
   }) async {
     await AppDialog.show(
       title: title,
@@ -61,6 +62,7 @@ mixin AppReusableComponent {
       positiveCallback: positiveCallback,
       negativeCallback: negativeCallback,
       isAutoBack: isAutoBack,
+      barrierDismissible: barrierDismissible,
     );
   }
 
@@ -78,6 +80,7 @@ mixin AppReusableComponent {
       positiveCallback: positiveCallback,
       negativeCallback: null,
       isAutoBack: isAutoBack,
+      barrierDismissible: false,
     );
   }
 
@@ -89,6 +92,7 @@ mixin AppReusableComponent {
     Function()? positiveCallback,
     Function()? negativeCallback,
     bool isAutoBack = true,
+    bool barrierDismissible = true,
   }) async {
     await AppDialog.showContent(
       title: title,
@@ -98,6 +102,7 @@ mixin AppReusableComponent {
       positiveCallback: positiveCallback,
       negativeCallback: negativeCallback,
       isAutoBack: isAutoBack,
+      barrierDismissible: barrierDismissible,
     );
   }
 

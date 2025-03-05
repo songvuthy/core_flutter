@@ -17,22 +17,26 @@ class AppDialog {
     Function()? positiveCallback,
     Function()? negativeCallback,
     bool isAutoBack = true,
+    bool barrierDismissible = true,
   }) async {
-    await Get.dialog(AppDialogWidget(
-      title: title,
-      content: message != null
-          ? Text(
-              message,
-              textAlign: TextAlign.center,
-              style: AppTextStyle.body6,
-            )
-          : null,
-      titleNegative: titleNegative,
-      titlePositive: titlePositive,
-      negativeCallback: negativeCallback,
-      positiveCallback: positiveCallback,
-      isAutoBack: isAutoBack,
-    ));
+    await Get.dialog(
+      AppDialogWidget(
+        title: title,
+        content: message != null
+            ? Text(
+                message,
+                textAlign: TextAlign.center,
+                style: AppTextStyle.body6,
+              )
+            : null,
+        titleNegative: titleNegative,
+        titlePositive: titlePositive,
+        negativeCallback: negativeCallback,
+        positiveCallback: positiveCallback,
+        isAutoBack: isAutoBack,
+        barrierDismissible: barrierDismissible,
+      ),
+    );
   }
 
   static Future<void> showContent({
@@ -43,6 +47,7 @@ class AppDialog {
     Function()? positiveCallback,
     Function()? negativeCallback,
     bool isAutoBack = true,
+    bool barrierDismissible = true,
   }) async {
     await Get.dialog(
       AppDialogWidget(
@@ -53,6 +58,7 @@ class AppDialog {
         negativeCallback: negativeCallback,
         positiveCallback: positiveCallback,
         isAutoBack: isAutoBack,
+        barrierDismissible: barrierDismissible,
       ),
     );
   }
@@ -66,6 +72,7 @@ class AppDialogWidget extends StatelessWidget {
   final Function()? negativeCallback;
   final Function()? positiveCallback;
   final bool isAutoBack;
+  final bool barrierDismissible;
   const AppDialogWidget({
     super.key,
     this.title,
@@ -75,54 +82,99 @@ class AppDialogWidget extends StatelessWidget {
     this.negativeCallback,
     this.positiveCallback,
     this.isAutoBack = true,
+    this.barrierDismissible = true,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      color: Colors.transparent,
-      child: Stack(
-        children: [
-          // Blur effect
-          BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-            child: Container(
-              color: Colors.black.withAlpha(0),
-            ), // Semi-transparent effect
-          ),
-          // Dialog Box
-          Center(
-            child: Container(
-              constraints:
-                  const BoxConstraints(minWidth: 250.0, maxWidth: 300.0),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius:
-                    BorderRadius.circular(AppDecoration.defaultRadius),
+    return PopScope(
+      canPop: barrierDismissible, // Prevent back button from closing the dialog
+      child: GestureDetector(
+        onTap: () {
+          if (barrierDismissible) {
+            Get.back();
+          }
+        }, // Close dialog when tapping outside
+        child: Material(
+          color: Colors.transparent,
+          child: Stack(
+            children: [
+              // Blur effect
+              BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+                child: Container(
+                  color: Colors.black.withAlpha(0),
+                ), // Semi-transparent effect
               ),
-              padding: const EdgeInsets.all(AppDecoration.bigSpacing),
-              child: Wrap(
-                runSpacing: AppDecoration.mediumSpacing,
-                children: [
-                  if (title != null)
-                    SizedBox(
-                      width: double.infinity,
-                      child: Text(
-                        title!,
-                        textAlign: TextAlign.center,
-                        style: AppTextStyle.subtitle1,
-                      ),
+              // Dialog Box
+              GestureDetector(
+                onTap:
+                    () {}, // Prevents dialog from closing when tapping inside
+                child: Center(
+                  child: Container(
+                    constraints:
+                        const BoxConstraints(minWidth: 250.0, maxWidth: 300.0),
+                    decoration: BoxDecoration(
+                      color: AppColors.white,
+                      borderRadius:
+                          BorderRadius.circular(AppDecoration.defaultRadius),
                     ),
-                  if (content != null)
-                    SizedBox(
-                      width: double.infinity,
-                      child: content!,
-                    ),
-                  if (titleNegative != null && titlePositive != null)
-                    Row(
+                    padding: const EdgeInsets.all(AppDecoration.bigSpacing),
+                    child: Wrap(
+                      runSpacing: AppDecoration.mediumSpacing,
                       children: [
-                        Flexible(
-                          child: AppOutlinedButton(
+                        if (title != null)
+                          SizedBox(
+                            width: double.infinity,
+                            child: Text(
+                              title!,
+                              textAlign: TextAlign.center,
+                              style: AppTextStyle.subtitle1,
+                            ),
+                          ),
+                        if (content != null)
+                          SizedBox(
+                            width: double.infinity,
+                            child: content!,
+                          ),
+                        if (titleNegative != null && titlePositive != null)
+                          Row(
+                            children: [
+                              Flexible(
+                                child: AppOutlinedButton(
+                                  width: double.infinity,
+                                  height: 41,
+                                  padding: EdgeInsets.zero,
+                                  borderRadius: BorderRadius.circular(8),
+                                  onPressed: () {
+                                    if (isAutoBack) {
+                                      Get.back();
+                                    }
+                                    negativeCallback?.call();
+                                  },
+                                  text: titleNegative,
+                                ),
+                              ),
+                              const SpaceHorizontal(),
+                              Flexible(
+                                child: AppFilledButton(
+                                  width: double.infinity,
+                                  height: 41,
+                                  padding: EdgeInsets.zero,
+                                  borderRadius: BorderRadius.circular(8),
+                                  onPressed: () {
+                                    if (isAutoBack) {
+                                      Get.back();
+                                    }
+                                    positiveCallback?.call();
+                                  },
+                                  text: titlePositive,
+                                ),
+                              ),
+                            ],
+                          )
+                        else if (titleNegative != null)
+                          AppOutlinedButton(
                             width: double.infinity,
                             height: 41,
                             padding: EdgeInsets.zero,
@@ -134,11 +186,9 @@ class AppDialogWidget extends StatelessWidget {
                               negativeCallback?.call();
                             },
                             text: titleNegative,
-                          ),
-                        ),
-                        const SpaceHorizontal(),
-                        Flexible(
-                          child: AppFilledButton(
+                          )
+                        else if (titlePositive != null)
+                          AppFilledButton(
                             width: double.infinity,
                             height: 41,
                             padding: EdgeInsets.zero,
@@ -151,42 +201,14 @@ class AppDialogWidget extends StatelessWidget {
                             },
                             text: titlePositive,
                           ),
-                        ),
                       ],
-                    )
-                  else if (titleNegative != null)
-                    AppOutlinedButton(
-                      width: double.infinity,
-                      height: 41,
-                      padding: EdgeInsets.zero,
-                      borderRadius: BorderRadius.circular(8),
-                      onPressed: () {
-                        if (isAutoBack) {
-                          Get.back();
-                        }
-                        negativeCallback?.call();
-                      },
-                      text: titleNegative,
-                    )
-                  else if (titlePositive != null)
-                    AppFilledButton(
-                      width: double.infinity,
-                      height: 41,
-                      padding: EdgeInsets.zero,
-                      borderRadius: BorderRadius.circular(8),
-                      onPressed: () {
-                        if (isAutoBack) {
-                          Get.back();
-                        }
-                        positiveCallback?.call();
-                      },
-                      text: titlePositive,
                     ),
-                ],
+                  ),
+                ),
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
