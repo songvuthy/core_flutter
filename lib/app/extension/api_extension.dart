@@ -392,6 +392,7 @@ extension DialogValidation<T> on ViewState<T> {
         title: "Information",
         message: message,
         titlePositive: "Okay",
+        barrierDismissible: false,
       );
     }
   }
@@ -411,7 +412,7 @@ extension DialogValidation<T> on ViewState<T> {
         message: message,
         titlePositive: "Try Again",
         positiveCallback: onRetry,
-        titleNegative: null,
+        barrierDismissible: false,
       );
     }
   }
